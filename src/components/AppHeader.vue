@@ -1,6 +1,6 @@
 <template>
     <div class="p-3">
-        <input type="text">
+        <input type="text" v-model="store.filtro">
         <button @click="onSearch">Ricerca</button>
     </div>
 </template>

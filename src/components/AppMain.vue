@@ -1,7 +1,7 @@
 <template>
 <div>
     <ul>
-        <Card v-for="film in filmList"></Card>
+        <Card v-for="film in store.filmList" :singolo-film="film"></Card>
     </ul>
 </div>
 </template>
