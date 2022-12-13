@@ -1,5 +1,5 @@
 <script>
-import { store, fetchFilms } from "./store"
+import { store, fetchFilms, fetchSerie } from "./store"
 import Header from "./components/AppHeader.vue"
 import Main from "./components/AppMain.vue"
 
@@ -12,6 +12,9 @@ export default{
     methods:{
         ricercaFilms(){
             fetchFilms()
+        },
+        ricercaSerie(){
+            fetchSerie()
         }
     },
     components: {Header, Main}
@@ -20,7 +23,7 @@ export default{
 
 <template>
 
-<Header @searchFilms="ricercaFilms"></Header>
+<Header @searchFilms="ricercaFilms" @searchSerie="ricercaSerie"></Header>
 <Main></Main>
 
 </template>

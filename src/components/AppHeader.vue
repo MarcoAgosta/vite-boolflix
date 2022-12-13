@@ -16,6 +16,7 @@ export default{
     methods:{
         onSearch(){
             this.$emit("searchFilms")
+            this.$emit("searchSerie")
         }
     }
 }
