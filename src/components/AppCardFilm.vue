@@ -2,11 +2,15 @@
     <li>
         <div class="mb-5">
             <h4>Titolo: {{ singoloFilm.title }}</h4>
+            <img :src="creaLocandina(singoloFilm.poster_path)">
             <span class="d-block">Titolo originale: {{ singoloFilm.original_title }}</span>
             <img class="bandiera m-1" v-if="(singoloFilm.original_language in store.sigleBandiere)"
                 :src="convertiBandiera(singoloFilm.original_language)" :alt="(singoloFilm.original_language)">
             <img v-else class="bandiera" src='../assets/xx.svg' alt="">
-            <span class="d-block">Voto medio: {{ singoloFilm.vote_average }}</span>
+            <span class="d-block">Voto medio: 
+                <i class="fa-solid fa-star" v-for="i in creaVotoStelle(singoloFilm.vote_average)"></i>
+                <i class="fa-regular fa-star" v-for="i in 5-creaVotoStelle(singoloFilm.vote_average)"></i>
+            </span>
         </div>
     </li>
 </template>
@@ -25,7 +29,8 @@ export default {
             original_language: String,
             original_title: String,
             title: String,
-            vote_average: Number
+            vote_average: Number,
+            poster_path: String
         }
     },
     methods: {
@@ -33,6 +38,16 @@ export default {
             if (sigla in store.sigleBandiere) {
                 return new URL(`../assets/${store.sigleBandiere[sigla]}`, import.meta.url)
             }
+        },
+        creaLocandina(immagine){
+            const locandina = `${store.linkImmagine}${immagine}`
+            if (immagine){
+                return locandina
+            }
+        },
+        creaVotoStelle(voto){
+            const numeroStelle = Math.ceil(voto/2)
+            return numeroStelle
         }
     }
 }

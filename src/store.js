@@ -16,7 +16,8 @@ export const store=reactive({
         pt: "pt.svg",
         tr: "tr.svg",
         it: "it.svg"
-    }
+    },
+    linkImmagine: "https://image.tmdb.org/t/p/w342"
     
 })
 
