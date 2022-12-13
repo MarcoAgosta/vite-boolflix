@@ -7,6 +7,15 @@ export const store=reactive({
     chiavePersonale: "0a3d2afb65565f6fcd3dcc7395b2b5bc",
     searchText: "",
     filtro: "",
+    sigleBandiere:{
+        en: "us.svg",
+        fr: "fr.svg",
+        de: "de.svg",
+        es: "es.svg",
+        pt: "pt.svg",
+        tr: "tr.svg",
+        it: "it.svg"
+    }
     
 })
 

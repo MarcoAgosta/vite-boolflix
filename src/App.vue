@@ -5,7 +5,9 @@ import Main from "./components/AppMain.vue"
 
 export default{
     data(){
-
+        return {
+            store
+        }
     },
     methods:{
         ricercaFilms(){
