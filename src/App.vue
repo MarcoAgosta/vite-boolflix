@@ -22,13 +22,18 @@ export default{
 </script>
 
 <template>
-
-<Header @searchFilms="ricercaFilms" @searchSerie="ricercaSerie"></Header>
-<Main></Main>
-
+<div class="app">
+    <Header @searchFilms="ricercaFilms" @searchSerie="ricercaSerie"></Header>
+    <Main></Main>
+</div>
 </template>
 
 <style lang="scss">
-@use "./styles/general.scss"
+@use "./styles/general.scss";
 
+.app{
+    height: 100vh;
+    width: 100vw;
+    background-color: rgb(97, 97, 97);
+}
 </style>
