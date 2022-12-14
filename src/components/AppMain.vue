@@ -2,19 +2,18 @@
 <div>
     <h2 class="m-1">Film:</h2>
     <ul>
-        <Cardfilm v-for="film in store.filmList" :singolo-film="film"></Cardfilm>
+        <Card v-for="elemento in store.filmList" :singolo-media="elemento"></Card>
     </ul>
     <h2 class="m-1">Serie TV</h2>
     <ul>
-        <CardSerie v-for="serie in store.serieList" :singola-serie="serie"></CardSerie>
+        <Card v-for="elemento in store.serieList" :singolo-media="elemento"></Card>
     </ul>
 </div>
 </template>
 
 <script>
 import {store} from "../store"
-import Cardfilm from "./AppCardFilm.vue"
-import CardSerie from "./AppCardSerie.vue"
+import Card from "./AppCard.vue"
 
 export default{
     data(){
@@ -22,7 +21,7 @@ export default{
             store,
         }
     },
-    components: {Cardfilm, CardSerie}
+    components: {Card}
 }
 </script>
 
