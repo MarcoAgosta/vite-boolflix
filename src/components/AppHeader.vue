@@ -1,5 +1,5 @@
 <template>
-    <div class="p-3 background-b d-flex justify-content-between align-items-center w-100">
+    <div class="p-3 background-b d-flex justify-content-between align-items-center w-100 flex-shrink-1">
         <div>
             <h1 class="color-red">Boolflix</h1>
         </div>

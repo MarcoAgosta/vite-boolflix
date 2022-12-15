@@ -1,43 +1,48 @@
-import {reactive} from 'vue'
-import  axios  from 'axios'
+import { reactive } from 'vue'
+import axios from 'axios'
 
-export const store=reactive({
+export const store = reactive({
 
     filmList: [],
     serieList: {},
     chiavePersonale: "0a3d2afb65565f6fcd3dcc7395b2b5bc",
     searchText: "",
     filtro: "",
-    
+
 })
 
-export function fetchFilms(){
+export function fetchFilms() {
 
-    axios.get(`https://api.themoviedb.org/3/search/movie`, {
-        params:{
+    if (!store.filtro == "") {
 
-            api_key: store.chiavePersonale,
-            query: store.filtro
+        axios.get(`https://api.themoviedb.org/3/search/movie`, {
+            params: {
 
-        }
-    }).then((response) => {
+                api_key: store.chiavePersonale,
+                query: store.filtro
 
-        store.filmList = response.data.results;
-    })
+            }
+        }).then((response) => {
 
+            store.filmList = response.data.results;
+        })
+    }
 }
 
-export function fetchSerie(){
+export function fetchSerie() {
 
-    axios.get('https://api.themoviedb.org/3/search/tv',{
-        params:{
+    if (!store.filtro == "") {
 
-            api_key:store.chiavePersonale,
-            query:store.filtro
+        axios.get('https://api.themoviedb.org/3/search/tv', {
+            params: {
 
-        }
-    }).then((response) => {
+                api_key: store.chiavePersonale,
+                query: store.filtro
 
-        store.serieList = response.data.results;
-    })
+            }
+        }).then((response) => {
+
+            store.serieList = response.data.results;
+        })
+    }
 }

@@ -1,23 +1,31 @@
 <template>
     <li>
-        <div class="mb-5">
-            <h4>Titolo: {{ singoloMedia.title }}{{ singoloMedia.name }}</h4>
-            <img :src="creaLocandina(singoloMedia.poster_path)">
-            <span class="d-block">Titolo originale: {{ singoloMedia.original_title }}{{ singoloMedia.original_name }}
-            </span>
-            <img class="bandiera m-1" v-if="(singoloMedia.original_language in sigleBandiere)"
-                :src="convertiBandiera(singoloMedia.original_language)" :alt="(singoloMedia.original_language)">
-            <img v-else class="bandiera" src='../assets/xx.svg' alt="">
-            <span class="d-block">Voto medio:
-                <i class="fa-solid fa-star" v-for="i in creaVotoStelle(singoloMedia.vote_average)"></i>
-                <i class="fa-regular fa-star" v-for="i in 5 - creaVotoStelle(singoloMedia.vote_average)"></i>
-            </span>
+        <div class="mb-5 elemento position-relative">
+            <img class="locandina h-100 w-100" :src="creaLocandina(singoloMedia.poster_path)">
+            <div class="position-absolute top-0 w-100 h-100 informazioni p-2">
+                <h4>Titolo: {{ singoloMedia.title }}{{ singoloMedia.name }}</h4>
+                <span class="d-block">
+                    <h6 class="d-inline">Titolo originale:</h6> {{ singoloMedia.original_title }}{{
+                            singoloMedia.original_name
+                    }}
+                </span>
+                <img class="bandiera" v-if="(singoloMedia.original_language in sigleBandiere)"
+                    :src="convertiBandiera(singoloMedia.original_language)" :alt="(singoloMedia.original_language)">
+                <img v-else class="bandiera" src='../assets/xx.svg' alt="">
+                <span class="d-block mt-1 mb-1">
+                    <h6 class="d-inline">Voto medio:</h6>
+                    <i class="fa-solid fa-star" v-for="i in creaVotoStelle(singoloMedia.vote_average)"></i>
+                    <i class="fa-regular fa-star" v-for="i in 5 - creaVotoStelle(singoloMedia.vote_average)"></i>
+                </span>
+                <span>
+                    <h6 class="d-inline">Overview:</h6> {{ singoloMedia.overview }}
+                </span>
+            </div>
         </div>
     </li>
 </template>
 
 <script>
-import { store } from "../store"
 
 export default {
     data() {
@@ -42,7 +50,8 @@ export default {
             vote_average: Number,
             poster_path: String,
             name: String,
-            original_name: String
+            original_name: String,
+            overview: String
         }
     },
     methods: {
@@ -66,7 +75,44 @@ export default {
 </script>
 
 <style scoped lang="scss">
-.bandiera {
-    width: 15%;
+.fa-star {
+    color: rgb(255, 187, 0);
 }
+
+;
+
+.elemento {
+    width: 342px;
+    height: 512px;
+    border: 1px solid white
+}
+
+;
+
+.elemento:hover {
+    .informazioni {
+        visibility: visible;
+        opacity: 1;
+    }
+}
+
+.bandiera {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    width: 25%;
+}
+
+;
+
+.informazioni {
+    background-color: black;
+    color: white;
+    overflow: auto;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
+}
+
+;
 </style>

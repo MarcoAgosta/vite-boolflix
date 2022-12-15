@@ -1,6 +1,6 @@
 <template>
-<div>
-    <h2 class="m-1">Film:</h2>
+<div class="main flex-grow-1">
+    <h2 class="m-1">Film</h2>
     <ul>
         <Card v-for="elemento in store.filmList" :singolo-media="elemento"></Card>
     </ul>
@@ -26,5 +26,7 @@ export default{
 </script>
 
 <style scoped lang="scss">
-
+.main{
+    overflow-y: scroll;
+}
 </style>

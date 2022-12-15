@@ -22,7 +22,7 @@ export default{
 </script>
 
 <template>
-<div class="app">
+<div class="app-bg d-flex flex-column">
     <Header @searchFilms="ricercaFilms" @searchSerie="ricercaSerie"></Header>
     <Main></Main>
 </div>
@@ -31,9 +31,10 @@ export default{
 <style lang="scss">
 @use "./styles/general.scss";
 
-.app{
+.app-bg{
     height: 100vh;
-    width: 100vw;
+    max-height: 100vh;
+    width: 100%;
     background-color: rgb(97, 97, 97);
 }
 </style>
