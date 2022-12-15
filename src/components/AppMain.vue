@@ -1,13 +1,13 @@
 <template>
 <div class="main flex-grow-1">
-    <h2 class="m-1">Film</h2>
-    <ul>
+    <h2 class="m-4 white" v-if="(!store.filmList.length==0)">FILM</h2>
+    <div class="d-flex w-100 flex-wrap justify-content-around mb-5">
         <Card v-for="elemento in store.filmList" :singolo-media="elemento"></Card>
-    </ul>
-    <h2 class="m-1">Serie TV</h2>
-    <ul>
+    </div>
+    <h2 class="m-4 white"  v-if="(!store.serieList.length==0)">Serie TV</h2>
+    <div class="d-flex w-100 flex-wrap justify-content-around">
         <Card v-for="elemento in store.serieList" :singolo-media="elemento"></Card>
-    </ul>
+    </div>
 </div>
 </template>
 
@@ -28,5 +28,8 @@ export default{
 <style scoped lang="scss">
 .main{
     overflow-y: scroll;
+}
+.white{
+    color: white;
 }
 </style>

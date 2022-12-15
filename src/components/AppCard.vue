@@ -1,7 +1,9 @@
 <template>
-    <li>
+    <div>
         <div class="mb-5 elemento position-relative">
-            <img class="locandina h-100 w-100" :src="creaLocandina(singoloMedia.poster_path)">
+            <img class="locandina h-100 w-100" v-if="(singoloMedia.poster_path)"
+                :src="creaLocandina(singoloMedia.poster_path)">
+            <div v-else class="w-100 h-100 locandina bg-white"></div>
             <div class="position-absolute top-0 w-100 h-100 informazioni p-2">
                 <h4>Titolo: {{ singoloMedia.title }}{{ singoloMedia.name }}</h4>
                 <span class="d-block">
@@ -9,9 +11,6 @@
                             singoloMedia.original_name
                     }}
                 </span>
-                <img class="bandiera" v-if="(singoloMedia.original_language in sigleBandiere)"
-                    :src="convertiBandiera(singoloMedia.original_language)" :alt="(singoloMedia.original_language)">
-                <img v-else class="bandiera" src='../assets/xx.svg' alt="">
                 <span class="d-block mt-1 mb-1">
                     <h6 class="d-inline">Voto medio:</h6>
                     <i class="fa-solid fa-star" v-for="i in creaVotoStelle(singoloMedia.vote_average)"></i>
@@ -20,9 +19,13 @@
                 <span>
                     <h6 class="d-inline">Overview:</h6> {{ singoloMedia.overview }}
                 </span>
+                <div class="m-5"></div>
             </div>
+            <img class="bandiera" v-if="(singoloMedia.original_language in sigleBandiere)"
+                :src="convertiBandiera(singoloMedia.original_language)" :alt="(singoloMedia.original_language)">
+            <img v-else class="bandiera" src='../assets/xx.svg' alt="">
         </div>
-    </li>
+    </div>
 </template>
 
 <script>
@@ -38,7 +41,8 @@ export default {
                 es: "es.svg",
                 pt: "pt.svg",
                 tr: "tr.svg",
-                it: "it.svg"
+                it: "it.svg",
+                ja: "jp.svg"
             },
         }
     },
@@ -94,6 +98,11 @@ export default {
         visibility: visible;
         opacity: 1;
     }
+
+    .bandiera {
+        visibility: visible;
+        opacity: 1;
+    }
 }
 
 .bandiera {
@@ -101,6 +110,9 @@ export default {
     bottom: 0;
     right: 0;
     width: 25%;
+    visibility: hidden;
+    opacity: 0;
+    transition: visibility 0s, opacity 0.5s linear;
 }
 
 ;
